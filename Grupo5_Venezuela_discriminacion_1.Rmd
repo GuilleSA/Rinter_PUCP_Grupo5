@@ -1,0 +1,127 @@
+---
+title: "Grupo5_Discriminacion"
+author: "Grupo_5"
+date: "22/1/2022"
+output: rmdformats::readthedown
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+```{r,include=FALSE}
+library(rio)
+library(tidyverse)
+library(scales)
+```
+
+# Descripción de la Base de Datos:
+
+```{r}
+# discriminacion_empleo = import("discriminacion_empleo.sav")
+Link="https://github.com/GuilleSA/Rinter_PUCP_Grupo5/blob/main/Discriminacion%20y%20Empleo.sav?raw=true"
+discriminacion_empleo =import(Link)
+```
+
+La presente base de datos forma parte de una encuesta realizada por la INEI sobre la situación de la población migrante de Venezuela en el Perú.Por motivos de la investigación que llevaremos a cabo, se ha seleccionado tan solamente unos cuantos módulos. Debido a que nuestro tema central es la discriminación que perciben los migrantes, hemos seleccionado el módulo 11. Asimismo, hemos agregado este dos módulos adicionales que nos permitirán complementar la información. De esta manera, con ayuda del módulo 2 (Datos generales) y el módulo 6 (empleo), hemos creadi una sola base de datos que nos permita afinar nuestra perspectiva de trabajo.
+
+La base de datos que hemos creado cuenta con 152 variables que permiten abarcar la descripción 8836 casos. Algunas de las variables, al formar de una sola encuesta, dependen de otras para que pueda confirmarse. Al revisar la encuesta, por ejemplo, nos percatamos que algunas preguntas nos dan indicaciones de obviar unas o pasar a otras directamente según la respuesta. Otra particularidad esta base de datos es que no encontramos una dimensión temporal debido a que el proceso de encuesta se realizo en un solo mes. Por este motivo, hemos obviado las variables que señalaban las fechas en la base de datos original.
+
+```{r}
+discriminacion_empleo$PERCEPCION_DISCRIMINADO = gsub("1", "Si", discriminacion_empleo$PERCEPCION_DISCRIMINADO)
+discriminacion_empleo$PERCEPCION_DISCRIMINADO = gsub("2", "No", discriminacion_empleo$PERCEPCION_DISCRIMINADO)
+discriminacion_empleo$P609 = gsub("1", "Si", discriminacion_empleo$P609)
+discriminacion_empleo$P609 = gsub("2", "NO", discriminacion_empleo$P609)
+```
+
+# Descripcion del proyecto
+
+## Planteamiento del Problema:
+América Latina está enfrentando el impacto del nuevo flujo migratorio protagonizado por los ciudadanos venezolanos debido a la crisis económica, social y política que afecta a su país. Esta ola migratoria ha traído desafíos para los Estados de América Latina en su capacidad de dar una respuesta pronta y eficiente en atender las necesidades básicas, no solo de asistencia sino de protección.
+La intensificación y celeridad de la afluencia migratoria de venezolanos debería comprender políticas de integración para evitar los peligros de la xenofobia y la vulnerabilidad de sus derechos fundamentales. Frente a ello, es importante identificar la percepción del migrante venezolano en nuestro país frente a la problemática de discriminación que impacta en su cotidianeidad. 
+
+## Pregunta de Investigación y objetivos: 
+
+1. ¿Cómo ha impactado la discriminación en la vida de los migrantes venezolanos en el      Perú?
+
+2. Objetivos:
+
+    * Objetivo principal: 
+      
+      Medir el impacto de la discriminación en la vida de los migrantes venezolanos en        el Perú 
+
+    * Objetivos secundarios:
+        * Describir el perfil del migrante venezolano e identificar las características           de posibles situaciones de discriminación.
+        * Analizar la percepción del migrante venezolano frente a la problemática de              discriminación
+
+
+# Análisis exploratorio de las principales variables a estudiar
+
+```{r}
+prop_contrato <- discriminacion_empleo |>
+  count(P609) |>
+  mutate(contrato = n / 5428)
+prop_contrato = na.omit(prop_contrato) 
+  ggplot(prop_contrato, aes(P609, contrato, fill = P609))+
+  geom_bar (stat="identity", color = "black") +
+  geom_text(aes(label = percent((contrato), 0.01)), vjust = - 0.3) +
+  labs(x = " ", y = "Cantidad",
+       title = "VENEZOLANOS CON TENENCIA DE CONTRATO LABORAL",
+       subtitle = "AÃ±o 2018", 
+       caption = "Fuente: INEI - Encuesta ENPOVE 2018") +
+    scale_y_continuous(labels = percent) + 
+    theme_classic()
+```
+
+## VARIABLE: P611
+## **Â¿CUÃNTAS HORAS TRABAJÃ, EN SU OCUPACIÃN PRINCIPAL, Y OCUPACIÃN/ES SECUNDARIA/S?**
+### Esta variable captar la cantidad de horas efectivamente laboradas en las actividades principales y secundarias por los/as ocupados/as durante el perÃ­odo de referencia. Se incluyen las horas extraordinarias y se excluyen los permisos, licencias, tiempo de refrigerio, tiempo de traslado del domicilio al centro de trabajo y viceversa, etc.
+
+```{r}
+discriminacion_empleo |>
+  ggplot(aes(x = EDAD_AÑOS, y = P611)) +
+  geom_point() +
+  labs(x = "Edad", y = "Cantidad de horas trabajadas", title = "PoblaciÃ³n Venezolana segÃºn cantidad de horas de trabajo a la semana")
+```
+
+## VARIABLE: ingtot
+##**Â¿CUÃNTO FUE SU INGRESO TOTAL SIN DESCUENTOS , INCLUYENDO HORAS EXTRAS, BONIFICACIONES, PAGO POR CONCEPTO DE REFRIGERIO, MOVILIDAD, COMISIONES, ETC.?**
+### Esta variable permite conocer el nivel de ingreso de los/as trabajadores/as en su empleo u ocupaciÃ³n. El ingreso por trabajo representa la mayor proporciÃ³n en el ingreso del hogar. PermitirÃ¡ clasificar a los subempleados invisibles o subempleados por ingresos.
+
+```{r}
+discriminacion_empleo |>
+  ggplot(aes(x = EDAD_AÑOS, y = ingtot)) +
+  geom_point() +
+  labs(x = "Edad", y = "Ingreso Mensual (en soles)", title = "PoblaciÃ³n Venezolana segun Ingreso Mensual por Edad ")
+```
+
+## VARIABLE: P624
+## **Â¿CUÃNTAS SEMANAS HA ESTADO BUSCANDO TRABAJO, SIN INTERRUPCIONES?**
+###  Determinar el tiempo, en semanas, que los desocupados invierten en la bÃºsqueda de un  empleo y tener una idea general respecto a las caracterÃ­sticas de desempleo, esto permitirÃ¡ diseÃ±ar  polÃ­ticas mÃ¡s adecuadas al respecto.
+
+```{r}
+discriminacion_empleo |>
+  ggplot(aes(x = EDAD_AÑOS, y = P624)) +
+  geom_point() +
+  labs(x = "Edad", y = "Numero de semanas buscando trabajo", title = "PoblaciÃ³n Venezolana segÃºn cantidad de semanas buscando tranajo ")
+```
+## VARIABLE: PERCEPCION_DISCRIMINADO
+## **USTED, Â¿SE HA SENTIDO DISCRIMINADO POR SER PERSONA VENEZOLANA DESDE QUE LLEGÃ AL PERÃ?**
+###  Permite conocer si la poblaciÃ³n venezolana ha sentido algÃºn tipo de discriminaciÃ³n desde que llegÃ³ al  PerÃº
+
+```{r}
+discriminacion_empleo |>
+  group_by(PERCEPCION_DISCRIMINADO) |>
+  summarise(conteo = n()) |>
+  mutate(prop_discriminacion = conteo / sum(conteo)) |>
+  mutate(ypos=cumsum(prop_discriminacion)-0.7*prop_discriminacion) |>
+  ggplot() + 
+  aes(x = " ", y = prop_discriminacion, fill = PERCEPCION_DISCRIMINADO)+
+  geom_bar(stat = "identity", aes(fill = PERCEPCION_DISCRIMINADO), width = 1, color = "white")+
+  coord_polar("y", start = 0)+
+  labs(title = "VENEZOLANOS QUE SE HAN SENTIDO DISCRIMINADOS", subtitle = "En Porcentaje %",  caption = "Fuente: INEI - Encuesta ENPOVE 2018")+
+  theme_void()+
+  theme(legend.position = "none")+
+  geom_text(aes(y = ypos, label = percent(prop_discriminacion, 0.01)), color = "white", size =4)+ scale_fill_brewer(palette = "Dark2")
+```
+
