@@ -1,0 +1,57 @@
+DEPARTAMEN,PROVINCIA,CAPITAL,CLUSTER
+AREQUIPA,AREQUIPA,ALTO SELVA ALEGRE,discriminacion alta
+AREQUIPA,AREQUIPA,AREQUIPA,discriminacion baja
+AREQUIPA,AREQUIPA,CAYMA,discriminacion baja
+AREQUIPA,AREQUIPA,CERRO COLORADO,discriminacion baja
+AREQUIPA,AREQUIPA,JOSE LUIS BUSTAMANTE Y RIVERO,discriminacion baja
+AREQUIPA,AREQUIPA,MARIANO MELGAR,discriminacion baja
+AREQUIPA,AREQUIPA,MIRAFLORES,discriminacion baja
+AREQUIPA,AREQUIPA,PAUCARPATA,discriminacion baja
+AREQUIPA,AREQUIPA,SOCABAYA,discriminacion baja
+AREQUIPA,AREQUIPA,YANAHUARA,discriminacion baja
+CALLAO,CALLAO,BELLAVISTA,discriminacion baja
+CALLAO,CALLAO,CALLAO,discriminacion baja
+CALLAO,CALLAO,CARMEN DE LA LEGUA REYNOSO,discriminacion baja
+CALLAO,CALLAO,LA PERLA,discriminacion baja
+CALLAO,CALLAO,VENTANILLA,discriminacion baja
+CUSCO,CUSCO,CUSCO,discriminacion baja
+CUSCO,CUSCO,SAN JERONIMO,discriminacion baja
+CUSCO,CUSCO,SAN SEBASTIAN,discriminacion baja
+CUSCO,CUSCO,SANTIAGO,discriminacion baja
+CUSCO,CUSCO,WANCHAQ,discriminacion alta
+LA LIBERTAD,TRUJILLO,EL PORVENIR,discriminacion alta
+LA LIBERTAD,TRUJILLO,LA ESPERANZA,discriminacion baja
+LA LIBERTAD,TRUJILLO,TRUJILLO,discriminacion baja
+LA LIBERTAD,TRUJILLO,VICTOR LARCO HERRERA,discriminacion baja
+LIMA,LIMA,ATE,discriminacion baja
+LIMA,LIMA,BARRANCO,discriminacion alta
+LIMA,LIMA,BREÑA,discriminacion baja
+LIMA,LIMA,CARABAYLLO,discriminacion baja
+LIMA,LIMA,CHORRILLOS,discriminacion baja
+LIMA,LIMA,COMAS,discriminacion baja
+LIMA,LIMA,EL AGUSTINO,discriminacion baja
+LIMA,LIMA,INDEPENDENCIA,discriminacion baja
+LIMA,LIMA,JESÚS MARÍA,discriminacion baja
+LIMA,LIMA,LA MOLINA,discriminacion baja
+LIMA,LIMA,LA VICTORIA,discriminacion baja
+LIMA,LIMA,LIMA,discriminacion baja
+LIMA,LIMA,LINCE,discriminacion baja
+LIMA,LIMA,LOS OLIVOS,discriminacion baja
+LIMA,LIMA,LURIGANCHO,discriminacion baja
+LIMA,LIMA,LURIN,discriminacion baja
+LIMA,LIMA,MAGDALENA DEL MAR,discriminacion alta
+LIMA,LIMA,PACHACAMAC,discriminacion baja
+LIMA,LIMA,PUENTE PIEDRA,discriminacion baja
+LIMA,LIMA,RIMAC,discriminacion baja
+LIMA,LIMA,SAN BORJA,discriminacion baja
+LIMA,LIMA,SAN JUAN DE LURIGANCHO,discriminacion baja
+LIMA,LIMA,SAN JUAN DE MIRAFLORES,discriminacion baja
+LIMA,LIMA,SAN LUIS,discriminacion baja
+LIMA,LIMA,SAN MARTIN DE PORRES,discriminacion baja
+LIMA,LIMA,SAN MIGUEL,discriminacion baja
+LIMA,LIMA,SANTA ANITA,discriminacion baja
+LIMA,LIMA,SANTIAGO DE SURCO,discriminacion baja
+LIMA,LIMA,SURQUILLO,discriminacion baja
+LIMA,LIMA,VILLA EL SALVADOR,discriminacion baja
+LIMA,LIMA,VILLA MARIA DEL TRIUNFO,discriminacion baja
+TUMBES,TUMBES,TUMBES,discriminacion alta
